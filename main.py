@@ -1,20 +1,9 @@
 from time import sleep
-import TweetUtils as utils
+import data
+import ActionPatterns
 
-profiles = [{"nameImg": "images/p1/start_a4y4.png",
-             "browserChk": "images/p1/a4y4.png"}]
-
-for i, profile in enumerate(profiles):
-    #begin
-    wProfile = utils.Utilities(profile["nameImg"], profile["browserChk"])
-
-    if i == 0:
-        wProfile.InitIncogniton()
-
-    wProfile.InitTwitter()
-    wProfile.TextTweet()
-    wProfile.CloseProfile()
+d = data.TwData("ashleylxa")
 
 
-#end
-utils.Utilities.CloseIncognition()
+ap = ActionPatterns.Patterns(data.profiles)
+ap.SendTweets()

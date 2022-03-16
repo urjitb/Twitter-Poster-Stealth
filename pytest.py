@@ -1,13 +1,10 @@
-from re import X
 from time import sleep
-import pyautogui as auto
-import random as r
-import os
+import TweetUtils as utils
 
-image = auto.locateOnScreen(
-    "images/p1/a4y4.png", grayscale=True, confidence=.9)
 
-if(image):
-    print(image)
-else:
-    print("no image found")
+#end
+test = utils.Utilities("images/p1/start_a4y4.png","images/p1/a4y4.png")
+
+test.InitIncogniton()
+test.InitProfile()
+test.CloseIncognition()

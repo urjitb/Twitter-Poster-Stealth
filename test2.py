@@ -1,9 +1,8 @@
-file = open("tweets")
-tweetlist = []
-for st in file:
-    if "https:" in st:
-        tweetlist.append(st[0:len(st)-23])
-    else:
-         tweetlist.append(st)
+import WifiSwitchUtil
+from time import sleep
 
-print(tweetlist)
+wSwitch = WifiSwitchUtil.WifiSwitch()
+
+wSwitch.switcher(wSwitch.vivo)
+sleep(5)
+wSwitch.switcher(wSwitch.poco)
