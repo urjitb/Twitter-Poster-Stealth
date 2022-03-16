@@ -1,13 +1,13 @@
-class Person:
- 
-  def __init__(self,name,age,gender):
-    self.name = name
-    self.age = age
-    self.gender = gender
- 
-  def person_details(self):
-    print(f'Person Name: {self.name} \nPerson Age: {self.age} \nPerson Gender: {self.gender}\n')
+from re import X
+from time import sleep
+import pyautogui as auto
+import random as r
+import os
 
-p1 = Person("Check", "26", "M")
+image = auto.locateOnScreen(
+    "images/p1/a4y4.png", grayscale=True, confidence=.9)
 
-p1.person_details()
+if(image):
+    print(image)
+else:
+    print("no image found")
