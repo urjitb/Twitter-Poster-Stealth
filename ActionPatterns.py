@@ -18,12 +18,10 @@ class Patterns:
 
         for i, profile in enumerate(data.profiles):
             
-            wProfile.profileImage = profile["nameImg"]
-            wProfile.browserChkImg = profile["browserChk"]
             wsu.switcher(profile["connection"])
             if i == 0:
                 wProfile.InitIncogniton()
-            wProfile.InitProfile()
+            wProfile.InitProfile(profile["nameImg"],profile["browserChk"])
             #wProfile.InitTwitter()
             #wProfile.TextTweet(self.data.randomTweet())
             wProfile.CloseProfile()

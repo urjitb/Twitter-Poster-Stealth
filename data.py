@@ -5,7 +5,7 @@ networks = {"poco":'POCO X3 Pro:Stricker32!',"vivo":'vivo 1818:worldHello7890231
 profiles = [{"nameImg": "images/p1/start.png",
                 "browserChk": "images/p1/browser.png",
                 "connection":"poco"},{"nameImg": "images/p2/start.png",
-                "browserChk": "images/p1/browser.png",
+                "browserChk": "images/p2/browser.png",
                 "connection":"vivo"}]
 
 class TwData:

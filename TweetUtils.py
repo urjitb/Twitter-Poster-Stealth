@@ -9,9 +9,7 @@ import HumanActions as ha
 class Utilities:
     PAUSE = 2
 
-    def __init__(self, profileImg=None, browserChkImg=None):
-        self.profileImage = profileImg
-        self.browserChkImg = browserChkImg
+    def __init__(self):
         auto.PAUSE = self.PAUSE
         pass
 
@@ -20,6 +18,7 @@ class Utilities:
             imageAddress, grayscale=True, confidence=.9)
         while image == None:
             image = auto.locateOnScreen(imageAddress, confidence=0.9)
+            print(imageAddress)
 
     def WaitForImageClick(self, imageAddress:str, diff_x=20, diff_y=20):
         iAddress = imageAddress.split(',')
@@ -40,7 +39,7 @@ class Utilities:
     def WaitForImageRightClick(self, imageAddress, diff_x=20, diff_y=20):
 
         image = auto.locateOnScreen(
-            imageAddress, grayscale=True, confidence=.7)
+            imageAddress, grayscale=True, confidence=.8)
         while image == None:
             image = auto.locateOnScreen(imageAddress, confidence=0.9)
             print("still haven't found the image for right click " + imageAddress)
@@ -61,9 +60,9 @@ class Utilities:
 
     def InitProfile(self,profileImg,browserImg):
         
-        self.WaitForImageClick(self.profileImg, diff_x=960)
+        self.WaitForImageClick(profileImg, diff_x=960)
 
-        self.WaitForImage(self.browserImg)
+        self.WaitForImage(browserImg)
         auto.keyDown("fn")
         auto.press("f")
         auto.keyUp("fn")
