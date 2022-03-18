@@ -1,3 +1,4 @@
+from cgitb import grey
 from re import X
 from time import sleep
 import pyautogui as auto
@@ -49,14 +50,14 @@ class Utilities:
         ha.rightClick(image.left/2+diff_x, image.top/2+diff_y)
 
     def InitIncogniton(self, pendingUpdates=False):
-        self.PAUSE = 1
+        auto.PAUSE = 1
         os.system("open /applications/Incogniton.app/Contents/MacOS/incogniton")
 
         if(pendingUpdates):
             self.WaitForImageClick("images/cancel_incog.png")
             self.WaitForImageClick("images/cancel_incog.png")
 
-        self.PAUSE = 2
+        auto.PAUSE = 2
 
     def InitProfile(self,profileImg,browserImg):
         
@@ -67,12 +68,24 @@ class Utilities:
         auto.press("f")
         auto.keyUp("fn")
 
-    def InitTwitter(self):
+    def CheckIfLoggedIn(self,):
+        self.WaitForImage()
 
+    def InitTwitter(self):
+        
         ha.click(r.randint(255, 600), r.randint(52, 68))
         auto.typewrite("twitter.com/home")
+        auto.PAUSE = 5
         auto.press('enter')
-
+        
+        signIn = auto.locateOnScreen("images/sign_In_With_Google.png",grayscale=True, confidence=0.8)
+       
+        auto.PAUSE = 2
+        if(signIn):
+            return False
+        else:
+            return True
+        
     def TextTweet(self, textTweet="hi #hashtag"):
         self.WaitForImageClick("images/tweet.png")
         auto.typewrite(textTweet)
@@ -80,14 +93,14 @@ class Utilities:
         self.WaitForImageClick("images/tweetbtn.png", diff_x=80)
 
     def CloseProfile(self):
-        self.PAUSE = 1
+        auto.PAUSE = 1
         auto.keyDown("fn")
         auto.press("f")
         auto.keyUp("fn")
         self.WaitForImageRightClick("images/profile.png")
         auto.press("up")
         auto.press("enter")
-        self.PAUSE = 2
+        auto.PAUSE = 2
 
     def CloseIncognition(self):
 

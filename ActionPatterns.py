@@ -6,24 +6,23 @@ import WifiSwitchUtil
 
 
 class Patterns:
-    def __init__(self,snapUser):
-        self.data = data.TwData(snapUser)
+    def __init__(self):
         pass
 
     def SendTweets(self, images=None):
-
+        self.d = data.TwData()
         #begin
         wProfile = utils.Utilities()
         wsu = WifiSwitchUtil.WifiSwitch()
-
+        
         for i, profile in enumerate(data.profiles):
             
             wsu.switcher(profile["connection"])
             if i == 0:
                 wProfile.InitIncogniton()
             wProfile.InitProfile(profile["nameImg"],profile["browserChk"])
-            #wProfile.InitTwitter()
-            #wProfile.TextTweet(self.data.randomTweet())
+            if(wProfile.InitTwitter()):
+                wProfile.TextTweet(self.d.randomUniqueTweetFetch(profile["sc"]))
             wProfile.CloseProfile()
 
         #end
