@@ -22,7 +22,7 @@ class Patterns:
                 wProfile.InitIncogniton()
             wProfile.InitProfile(profile["nameImg"],profile["browserChk"])
             if(wProfile.InitTwitter()):
-                wProfile.TextTweet(self.d.randomUniqueTweetFetch(profile["sc"]))
+                wProfile.Tweet(self.d.randomUniqueTweetFetch(profile["sc"]))
             wProfile.CloseProfile()
 
         #end

@@ -86,11 +86,22 @@ class Utilities:
         else:
             return True
         
-    def TextTweet(self, textTweet="hi #hashtag"):
-        self.WaitForImageClick("images/tweet.png")
+    def Tweet(self, textTweet="hi #hashtag", image = None):
+        
+        self.WaitForImageClick("images/tweet.png",diff_y=r.randint(20,50),diff_x=r.randint(30,80))
         auto.typewrite(textTweet)
         auto.press("enter")
-        self.WaitForImageClick("images/tweetbtn.png", diff_x=80)
+        
+        if(image):
+            self.WaitForImageClick("images/imageUpload.png")
+            self.WaitForImageClick("images/imageSearch.png",diff_y=5)
+            auto.typewrite(image)
+            ha.click(565,365)
+            ha.click(1065,645)
+            pass
+
+
+        #self.WaitForImageClick("images/tweetbtn.png", diff_x=80)
 
     def CloseProfile(self):
         auto.PAUSE = 1

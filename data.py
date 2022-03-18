@@ -5,13 +5,13 @@ from html import unescape
 networks = {"poco":'POCO X3 Pro:Stricker32!',"vivo":'vivo 1818:worldHello7890231?@!'}
 
 #change p1 and p2 to somthing more readable
-profiles = [{"nameImg": "images/p2/start.png",
+profiles = [{"nameImg": "images/p1/start.png",
+                "browserChk": "images/p1/browser.png",
+                "connection":"poco","sc":"Ashleylxa"},{"nameImg": "images/p2/start.png",
                 "browserChk": "images/p2/browser.png",
                 "connection":"vivo","sc":"Ashleylxa"}]
 
 class TwData:
-    
-
     def __init__(self):
 
         file = open("tweets")
