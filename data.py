@@ -2,14 +2,18 @@ import random
 from bs4 import BeautifulSoup
 from html import unescape
 
-networks = {"poco":'POCO X3 Pro:Stricker32!',"vivo":'vivo 1818:worldHello7890231?@!'}
+networks = {"poco":'POCO X3 Pro:Stricker32!',"vivo":'vivo 1818:worldHello7890231?@!',"xenu":'Xenu_5g:Stricker32!'}
 
 #change p1 and p2 to somthing more readable
 profiles = [{"nameImg": "images/p1/start.png",
                 "browserChk": "images/p1/browser.png",
-                "connection":"poco","sc":"Ashleylxa"},{"nameImg": "images/p2/start.png",
+                "connection":"poco","sc":"ashieblax"},{"nameImg": "images/p2/start.png",
                 "browserChk": "images/p2/browser.png",
-                "connection":"vivo","sc":"Ashleylxa"}]
+                "connection":"poco","sc":"ashieblax"},{"nameImg": "images/p3/start.png",
+                "browserChk": "images/p3/browser.png",
+                "connection":"xenu","sc":"ashieblax"}]
+
+
 
 class TwData:
     def __init__(self):
@@ -70,6 +74,5 @@ class TwData:
         prevtweets = open("PrevTweets.txt",'w')
         prevtweets.writelines(prevtweetsList)
         prevtweets.close()    
-
 
         return tweet.strip().replace('tuname1',snap)

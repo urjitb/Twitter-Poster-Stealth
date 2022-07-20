@@ -1,4 +1,5 @@
 from cgitb import grey
+from pickle import FALSE
 from re import X
 from time import sleep
 import pyautogui as auto
@@ -37,19 +38,31 @@ class Utilities:
 
         ha.click(image.left/2+diff_x, image.top/2+diff_y)
 
-    def WaitForImageRightClick(self, imageAddress, diff_x=20, diff_y=20):
+    def WaitForImageRightClick(self, imageAddress, diff_x=20, diff_y=20,conf=0.8,center=False):
 
         image = auto.locateOnScreen(
             imageAddress, grayscale=True, confidence=.8)
-        while image == None:
-            image = auto.locateOnScreen(imageAddress, confidence=0.9)
-            print("still haven't found the image for right click " + imageAddress)
+        if center==False:
+            while image == None:
+                image = auto.locateOnScreen(imageAddress, grayscale=True, confidence=conf)
+                print("still haven't found the image for right click " + imageAddress)
 
-        print(image)
+            print(image)
+        
+            ha.rightClick(image.left/2+diff_x, image.top/2+diff_y)
+        else:
+            while image == None:
+                image = auto.locateCenterOnScreen(imageAddress, grayscale=True, confidence=conf)
+                print("still haven't found the image for right click " + imageAddress)
 
-        ha.rightClick(image.left/2+diff_x, image.top/2+diff_y)
+            print(image)
+        
+            auto.rightClick(image.left/2, image.top/2)
 
-    def InitIncogniton(self, pendingUpdates=False):
+
+        
+
+    def InitIncogniton(self, pendingUpdates=True):
         auto.PAUSE = 1
         os.system("open /applications/Incogniton.app/Contents/MacOS/incogniton")
 
@@ -67,9 +80,6 @@ class Utilities:
         auto.keyDown("fn")
         auto.press("f")
         auto.keyUp("fn")
-
-    def CheckIfLoggedIn(self,):
-        self.WaitForImage()
 
     def InitTwitter(self):
         
@@ -91,14 +101,19 @@ class Utilities:
         self.WaitForImageClick("images/tweet.png",diff_y=r.randint(20,50),diff_x=r.randint(30,80))
         auto.typewrite(textTweet)
         auto.press("enter")
-        
+
+        image = r.choice(os.listdir("/Users/urjitb/Documents/twitimgs/jpgs"))
+
         if(image):
             self.WaitForImageClick("images/imageUpload.png")
             self.WaitForImageClick("images/imageSearch.png",diff_y=5)
             auto.typewrite(image)
             ha.click(565,365)
-            ha.click(1065,645)
-            pass
+            ha.click(1065,645) 
+            ha.click(520,211)
+            auto.keyDown("ctrl")
+            auto.press("enter")
+            auto.keyUp("ctrl")
 
 
         #self.WaitForImageClick("images/tweetbtn.png", diff_x=80)
@@ -108,7 +123,7 @@ class Utilities:
         auto.keyDown("fn")
         auto.press("f")
         auto.keyUp("fn")
-        self.WaitForImageRightClick("images/profile.png")
+        self.WaitForImageRightClick("images/profile.png",conf=0.7)
         auto.press("up")
         auto.press("enter")
         auto.PAUSE = 2
@@ -116,7 +131,7 @@ class Utilities:
     def CloseIncognition(self):
 
         browserOpen = auto.locateOnScreen(
-            "images/browserOnScreen.png", grayscale=True, confidence=.9)
+            "images/browserOnScreen.png", grayscale=True, confidence=.7)
 
         if browserOpen:
             self.CloseProfile()
