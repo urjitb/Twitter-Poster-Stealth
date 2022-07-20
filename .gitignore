@@ -1,3 +1,9 @@
+data.py
+data2.py
+jessica.json
+tweets
+PrevTweets.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
